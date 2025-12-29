@@ -735,27 +735,26 @@
       </div>
     </section>
 
-    <section class="card" id="contact" style="display: flex; justify-content: space-between;">
-    
+    <section class="card" id="contact" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
       <div>
+        <h3 class="section-title">📞 Contact Me</h3>
         <ul class="contact-list">
-        <li>
-          <b>Email:</b>
-          <a href="https://mail.google.com/mail/?view=cm&to=vikasgabale9@gmail.com" target="_blank">vikasgabale9@gmail.com</a>
-        </li>
-        <li>
-          <b>LinkedIn:</b>
-          <a href="https://www.linkedin.com/in/vikas-gabale" target="_blank">linkedin.com/in/vikas-gabale</a>
-        </li>
-        <li>
-          <b>GitHub:</b>
-          <a href="https://github.com/Vikasgabale9" target="_blank">github.com/vikasgabale</a>
-        </li>
-       
-        <li>
-          <b>Location:</b> Hyderabad, India
-        </li>
-      </ul>
+          <li>
+            <b>Email:</b>
+            <a href="https://mail.google.com/mail/?view=cm&to=vikasgabale9@gmail.com" target="_blank">vikasgabale9@gmail.com</a>
+          </li>
+          <li>
+            <b>LinkedIn:</b>
+            <a href="https://www.linkedin.com/in/vikas-gabale" target="_blank">linkedin.com/in/vikas-gabale</a>
+          </li>
+          <li>
+            <b>GitHub:</b>
+            <a href="https://github.com/Vikasgabale9" target="_blank">github.com/vikasgabale</a>
+          </li>
+          <li>
+            <b>Location:</b> Hyderabad, India
+          </li>
+        </ul>
       </div>
       <div style="width:100%;max-width:520px;">
         <div style="background:#fff;border-radius:14px;padding:28px 26px;box-shadow:0 10px 30px rgba(31,41,55,0.08);border:1px solid rgba(15,23,42,0.04);">
@@ -770,7 +769,7 @@
           <form id="contactForm" action="https://formspree.io/f/mqagynon" method="POST">
             <div style="margin-bottom:14px;">
               <label style="display:block;font-size:13px;color:#334155;margin-bottom:8px;">Your email</label>
-              <input type="email" name="email" id="emailInput" placeholder="you@domain.com" required 
+              <input type="email" name="_replyto" id="emailInput" placeholder="you@domain.com" required 
                 style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.18);font-size:14px;color:#0f172a;box-sizing:border-box;">
             </div>
 
@@ -779,6 +778,10 @@
               <textarea name="message" id="messageInput" placeholder="Write your message here..." rows="6" required 
                 style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.18);font-size:14px;color:#0f172a;resize:vertical;min-height:120px;box-sizing:border-box;"></textarea>
             </div>
+
+            <!-- Formspree honeypot and subject fields -->
+            <input type="text" name="_gotcha" style="display:none" />
+            <input type="hidden" name="_subject" value="New contact from portfolio!" />
 
             <button type="submit" id="submitBtn"
               style="background:linear-gradient(90deg,#7c3aed,#06b6d4);border:none;color:white;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;cursor:pointer;width:100%;transition:opacity 0.2s;">
@@ -791,3 +794,117 @@
           <div style="margin-top:12px;font-size:12px;color:#94a3b8;text-align:center;">Your message will be sent to vikasgabale9@gmail.com</div>
         </div>
       </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Vikas Vitthalrao Gabale · Built with dedication and passion for backend development.
+  </footer>
+
+  <div class="scroll-top" id="scrollTop">↑</div>
+
+  <script>
+    // Particle effect
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.width = Math.random() * 5 + 2 + 'px';
+      particle.style.height = particle.style.width;
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.top = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+      particlesContainer.appendChild(particle);
+    }
+
+    // Scroll to top
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollTop.classList.add('visible');
+      } else {
+        scrollTop.classList.remove('visible');
+      }
+    });
+    scrollTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // GSAP animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from('header', {
+      opacity: 0,
+      y: -50,
+      duration: 1,
+      ease: 'power3.out'
+    });
+
+    gsap.utils.toArray('.card').forEach((card) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+
+    // Form handling
+    const form = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      submitBtn.style.opacity = '0.7';
+      
+      const formData = new FormData(form);
+      
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          formStatus.style.display = 'block';
+          formStatus.style.color = '#10b981';
+          formStatus.textContent = '✓ Message sent successfully! I\'ll get back to you soon.';
+          form.reset();
+          
+          // Hide success message after 5 seconds
+          setTimeout(() => {
+            formStatus.style.display = 'none';
+          }, 5000);
+        } else {
+          throw new Error(data.error || 'Failed to send');
+        }
+      } catch (error) {
+        formStatus.style.display = 'block';
+        formStatus.style.color = '#ef4444';
+        formStatus.textContent = '✗ Something went wrong. Please try again or email me directly at vikasgabale9@gmail.com';
+        console.error('Form submission error:', error);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+        submitBtn.style.opacity = '1';
+      }
+    });
+  </script>
+</body>
+</html>
