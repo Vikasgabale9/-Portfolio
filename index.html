@@ -757,23 +757,37 @@
         </li>
       </ul>
       </div>
-      <div>
-        <!-- modify this form HTML and place wherever you want your form -->
-<form action="https://formspree.io/f/mqagynon" method="POST" style="width:100%;max-width:520px;background:#fff;border-radius:14px;padding:28px 26px;box-shadow:0 10px 30px rgba(31,41,55,0.08);border:1px solid rgba(15,23,42,0.04);">
+      <div style="width:100%;max-width:520px;">
+        <div style="background:#fff;border-radius:14px;padding:28px 26px;box-shadow:0 10px 30px rgba(31,41,55,0.08);border:1px solid rgba(15,23,42,0.04);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
+            <div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;">✉️</div>
+            <div>
+              <h2 style="margin:0;font-size:20px;color:#0f172a;letter-spacing:-0.2px;">Get in touch</h2>
+              <p style="margin:4px 0 0;font-size:13px;color:#475569;">Have a question or feedback? Send it over — I'll reply soon.</p>
+            </div>
+          </div>
 
+          <form id="contactForm" action="https://formspree.io/f/mqagynon" method="POST">
+            <div style="margin-bottom:14px;">
+              <label style="display:block;font-size:13px;color:#334155;margin-bottom:8px;">Your email</label>
+              <input type="email" name="email" id="emailInput" placeholder="you@domain.com" required 
+                style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.18);font-size:14px;color:#0f172a;box-sizing:border-box;">
+            </div>
 
-<div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;">
-<div style="width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#7c3aed,#06b6d4);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:18px;">✉️</div>
-<div>
-<h2 style="margin:0;font-size:20px;color:#0f172a;letter-spacing:-0.2px;">Get in touch</h2>
-<p style="margin:4px 0 0;font-size:13px;color:#475569;">Have a question or feedback? Send it over — I'll reply soon.</p>
-</div>
-</div>
+            <div style="margin-bottom:14px;">
+              <label style="display:block;font-size:13px;color:#334155;margin-bottom:8px;">Your message</label>
+              <textarea name="message" id="messageInput" placeholder="Write your message here..." rows="6" required 
+                style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.18);font-size:14px;color:#0f172a;resize:vertical;min-height:120px;box-sizing:border-box;"></textarea>
+            </div>
 
+            <button type="submit" id="submitBtn"
+              style="background:linear-gradient(90deg,#7c3aed,#06b6d4);border:none;color:white;padding:12px 24px;border-radius:10px;font-weight:600;font-size:15px;cursor:pointer;width:100%;transition:opacity 0.2s;">
+              Send Message
+            </button>
 
-<label style="display:block;font-size:13px;color:#334155;margin-bottom:8px;">Your email</label>
-<input type="email" name="email" placeholder="you@domain.com" required style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.08);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);font-size:14px;color:#0f172a;outline:none;margin-bottom:14px;transition:box-shadow .15s,transform .08s;" onfocus="this.style.boxShadow='0 6px 18px rgba(99,102,241,0.12)';this.style.borderColor='#7c3aed'" onblur="this.style.boxShadow='inset 0 1px 0 rgba(255,255,255,0.6)';this.style.borderColor='rgba(15,23,42,0.08)'">
+            <div id="formStatus" style="margin-top:12px;font-size:13px;text-align:center;display:none;"></div>
+          </form>
 
-
-<label style="display:block;font-size:13px;color:#334155;margin:6px 0 8px;">Your message</label>
-<textarea name="message" placeholder="Write your message here..." rows="6" required style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid rgba(15,23,42,0.08);font-size:14px;color:#0f172a;resize:vertical;min-height:120px;outline
+          <div style="margin-top:12px;font-size:12px;color:#94a3b8;text-align:center;">Your message will be sent to vikasgabale9@gmail.com</div>
+        </div>
+      </div>
